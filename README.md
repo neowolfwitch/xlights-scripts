@@ -1,5 +1,5 @@
 # xlights-scripts
-This is a repository of my FPP scripts, used for Oak Hills Lights. https://oakhillslights.com
+This is a repository of my xLights API scripts, used for Oak Hills Lights. https://oakhillslights.com
 
 Most of these are linked from https://lunardenlights.com
 
