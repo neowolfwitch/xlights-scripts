@@ -17,7 +17,7 @@
 //Set xFade/xSchedule to "Port A".
 
 //Just set this...
-define ( 'SHOWDIR', '/Users/wolf/xLights-Sync/2021/Christmas' );   //This needs to match your xLights Show Directory
+define ( 'SHOWDIR', '/users/wolf/xLights Sync/2022/Christmas' );   //This needs to match your xLights Show Directory
 
 //You shouldn't need to chnage this unless xLights devs change the port number (49913)
 define ( 'BASEURL', 'http://127.0.0.1:49913' ); //This is the default for the xLights API.
@@ -62,7 +62,12 @@ $arrDir = scandir ( SHOWDIR );
 foreach ( $arrDir as $file ) {
     if ( substr ( $file, -4 ) == '.xsq' ) {
         $encFile = str_replace ( ' ', '%20', $file );
-        echo "\nProcessing: " . $file;
+        $zipFile = substr ( $file, 0, -4 ) . '.zip';
+        if ( is_file ( $zipFile ) ) {
+            echo "\nPackage ($zipFile) exists. Skipping.";
+            continue;
+        }
+        else echo "\nProcessing: " . $file;
         disp_result ( do_get ( "openSequence/$encFile" ) );
         echo "\n\tRendering...";
         disp_result ( do_get ( "renderAll") );
