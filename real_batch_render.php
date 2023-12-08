@@ -1,18 +1,23 @@
 <?php
 /*** 
- * batch_render.php
+ * real_batch_render.php
  * by Wolf I. Butler
- * v. 1.1, Last Updated: 01/07/2022
+ * v. 1.2, Last Updated: 12/08/2023
  * 
- * Script using the new xLights API to render all sequences
- * in the current Show Directory. Duplicates Tools -> Batch Render.
- * This can be used with cron or otherwise fired programatically.
- * It doesn't do anything Batch Render in the GUI doesn't do except
- * sort the files alphabetically so you have a better idea of the progress.
+ * Script using the xLights API to render all sequences
+ * in the current Show Directory. 
+ * 
+ * Tools -> Batch Render only saves .fseq files, and not the .xsq files.
+ * This saves BOTH.
+ * 
+ * If you monitor xLights while it is running, you can also fix any model
+ * mapping issues "on-the-fly" and they will actually be saved.
  *  
  * This was designed to work on Mac or Linux with PHP installed.
- * For Windows- PHP CLI will need to be installed.
+ * For Windows- PHP CLI will need to be installed, and you will need to use
+ * the Windows format for the Show Folder path.
  *
+ * This is open source, do what you want with it. As-is, no-warranty.
  * 
 */
 
