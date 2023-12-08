@@ -16,14 +16,18 @@
  * 
 */
 
-//Be sure the API server is enabled in xLights. As of this writing, it is set in Preferences -> Output
-//Set xFade/xSchedule to "Port A".
+//Be sure the API server is enabled in xLights. 
+//As of this writing, it is set in Preferences -> Output. Set xFade/xSchedule to "Port A".
 
 //Just set this...
-define ( 'SHOWDIR', '/Users/wolf/xLights Sync/2022/Christmas' );   //This needs to match your xLights Show Directory
+define ( 'SHOWDIR', '/Users/wolf/xLights Sync/2023/Christmas' );   //This needs to match your xLights Show Directory
 
 //You shouldn't need to chnage this unless xLights devs change the port number (49913)
 define ( 'BASEURL', 'http://127.0.0.1:49913' ); //This is the default for the xLights API.
+
+//Skip to this sequence. Used if xLights crashes while running this script. Set to FALSE if no need.
+$skipTo = FALSE;
+//$skipTo='Text Me Merry Christmas (feat. Kristen Bell).xsq';
 
 //Leave the rest alone...
 
@@ -62,14 +66,23 @@ if ( ! do_get ( 'getVersion' ) ) {
 
 //Get file list from current directory and process all .xsq files:
 $arrDir = scandir ( SHOWDIR );
+do_get ( "closeSequence");  //If xLights already has a sequence open, close it.
 foreach ( $arrDir as $file ) {
     if ( substr ( $file, -4 ) == '.xsq' ) {
+        if($skipTo) {
+            if ($file != $skipTo) {
+                 echo "\nSkipping $file...";
+                 continue;
+            }
+            $skipTo = FALSE;
+        }
         $encFile = str_replace ( ' ', '%20', $file );
         echo "\nProcessing: " . $file;
         disp_result ( do_get ( "openSequence/$encFile" ) );
         echo "\n\tRendering...";
         disp_result ( do_get ( "renderAll") );
         disp_result ( do_get ( "saveSequence") );
+        disp_result ( do_get ( "closeSequence") );
         echo "\n\tDone.\n";
     }
 } 
