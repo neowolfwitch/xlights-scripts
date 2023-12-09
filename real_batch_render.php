@@ -31,8 +31,8 @@ define ( 'SHOWDIR', '/Users/wolf/xLights Sync/2023/Christmas' );   //This needs 
 define ( 'BASEURL', 'http://127.0.0.1:49913' ); //This is the default for the xLights API.
 
 //Skip to this sequence. Used if xLights crashes while running this script. Set to FALSE if no need.
-$skipTo = FALSE;
-//$skipTo='Text Me Merry Christmas (feat. Kristen Bell).xsq';
+//$skipTo = FALSE;
+$skipTo='Joy To The World KC.xsq';
 
 //Leave the rest alone...
 
